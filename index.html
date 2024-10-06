@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLIP</title>
+    <link rel="icon" href="https://img.icons8.com/ios/50/000000/avocado.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Impede rolagem horizontal na página */
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #28a745; /* Verde */
+            text-transform: uppercase; /* Letras maiúsculas */
+        }
+        .search-bar {
+            margin-top: 10px;
+        }
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745; /* Verde */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: -5px;
+        }
+        .search-bar button:hover {
+            background-color: #218838; /* Verde escuro */
+        }
+        .container, .ads-container, .bottom-products-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto; /* Permite rolagem horizontal */
+            padding: 20px;
+        }
+        .product, .ads {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+            margin-right: 20px;
+            flex: 0 0 auto; /* Evita que itens se redimensionem */
+            width: 250px;
+            text-decoration: none; /* Remove o sublinhado dos links */
+            color: inherit; /* Mantém a cor do texto */
+        }
+        .product img, .ads img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .product h2, .ads h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .product p, .ads p {
+            color: #28a745; /* Verde */
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .separator {
+            height: 40px; /* Espaço entre as seções */
+        }
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #218838; /* Verde escuro */
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .chat-button:hover {
+            background-color: #1e7e34; /* Verde ainda mais escuro */
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            margin-top: 20px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        .footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FLIP</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar produtos...">
+            <button onclick="searchProducts()">Buscar</button>
+        </div>
+    </div>
+
+    <div class="container" id="productContainer">
+        <!-- Produtos - Parte Superior -->
+        <a class="product" href="produto.html?name=Produto%201&price=R$%2099,90" data-name="Produto 1">
+            <img src="fila_euro_jogger_marin_verm_cinza_nn_1.webp" alt="Produto 1">
+            <h2>Tênis do 44 ao 50 | Alex Shoes | Calçados Tamanhos Grandes Masculino e Feminino</h2>
+            <p>R$  350,99</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%202&price=R$%20149,90" data-name="Produto 2">
+            <img src="fila_gear_esp_mari_pta_verd_n_1.webp" alt="Produto 2">
+            <h2>Tênis Fila Gear FL23 Marinho-Prata-Verde TAM 44 ao 48</h2>
+            <p>R$ 149,90</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%203&price=R$%20199,90" data-name="Produto 3">
+            <img src="Copa-do-Mundo-2022-Al-Rihla-300x300.jpg.webp" alt="Produto 3">
+            <h2>Bola de Futebol Adidas Al Rihla Training</h2>
+            <p>R$  600,00</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%204&price=R$%20249,90" data-name="Produto 4">
+            <img src="217tCuUg3AL._AC_.jpg" alt="Produto 4">
+            <h2>Reebok Tênis masculino Club C 85 Vintage</h2>
+            <p>R$ 564,95</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%205&price=R$%20299,90" data-name="Produto 5">
+            <img src="camisa-real-madrid-home-23-24-adidas-1-ifjxod.webp" alt="Produto 5">
+            <h2>Camisa Real Madrid Home 23/24 Adidas</h2>
+            <p>R$ 179,90</p>
+        
+        <a class="product" href="produto.html?name=Produto%207&price=R$%20399,90" data-name="Produto 7">
+            <img src="ded60b65ed.webp" alt="Produto 7">
+            <h2>Bola de Vôlei Penalty VP 5000 Ultra Fusion Adulto BCO/LAR</h2>
+            <p>R$ 167,99</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%208&price=R$%20449,90" data-name="Produto 8">
+            <img src="dc3432-005-tenis-nike-court-vapor-lite-hc-masc-preto-branco-e-verde.jpg" alt="Produto 8">
+            <h2>Tênis Nike Court Vapor Lite HC Preto Branco e Verde</h2>
+            <p>R$369,34</p>
+        </a>
+        <a class="product" href="pagina02index.html" data-name="Produto 9">
+            <img src="FB9-4324-056_zoom1.webp" alt="Produto 9">
+            <h2>Camisa Internacional I 24/25 s/n° Torcedor Adidas Masculina - Vermelho+Branco</h2>
+            <p>R$ 332,49</p>
+        
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="ads-container">
+        <!-- Anúncios -->
+        <div class="ads">
+            <h2>Camisa Internacional I 24/25 s/n° Torcedor Adidas Masculina - Vermelho+Branco</h2>
+            <img src="FB9-4324-056_zoom1.webp" alt="Anúncio 1">
+            <p>Camisa do maior do sul esta em oferta</p>
+        </div>
+        <div class="ads">
+            <h2>Teclado Mecânico Gamer Redragon Dark Avenger RGB Switch Preto K568RGB-2, Preto - Redragon</h2>
+            <img src="digital--4--60ukfbap2v.webp" alt="Anúncio 2">
+            <p>Ofertas especiais Teclados para você dar so bala na cara. Não perca!</p>
+        </div>
+        <div class="ads">
+            <h2>Tênis Nike Court Vapor Lite HC Preto Branco e Verde</h2>
+            <img src="dc3432-005-tenis-nike-court-vapor-lite-hc-masc-preto-branco-e-verde.jpg" alt="Anúncio 3">
+            <p>Confira nossas promoções de verão e economize!</p>
+        </div>
+        <div class="ads">
+            <h2>Camisa Arsenal Away 23/24 Adidas</h2>
+            <img src="camisa-arsenal-away-23-24--1--koecvt6esk.webp" alt="Anúncio 4">
+            <p>Novidades em utensílios para casa. Veja agora!</p>
+        </div>
+        <div class="ads">
+            <h2>Bola de Basquete Wilson NBA DRV #7</h2>
+            <img src="90_bola_de_basquete_wilson_nba_drv_7_1503_1_8a454356dc9bcf48cf55ab8bd23ea161.webp" alt="Anúncio 5">
+            <p>Super ofertas em cosméticos. Confira!</p>
+        </div>
+        <div class="ads">
+            <h2>Tênis Gazelle</h2>
+            <img src="tenis-gazelle.avif" alt="Anúncio 6">
+            <p>Promoções em eletrodomésticos. Aproveite!</p>
+        </div>
+        
+        
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="bottom-products-container" id="bottomProductContainer">
+        <!-- Produtos - Parte Inferior -->
+        <a class="product" href="produto.html?name=Produto%2011&price=R$%20599,90" data-name="Produto 11">
+            <img src="tenis-atlanta.avif" alt="Produto 11">
+            <h2>Tênis Atlanta</h2>
+            <p>R$ 699,99</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2012&price=R$%20649,90" data-name="Produto 12">
+            <img src="camisa-arsenal-away-23-24--1--koecvt6esk.webp" alt="Produto 12">
+            <h2>Camisa Arsenal Away 23/24 Adidas</h2>
+            <p>R$  179,90</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2013&price=R$%20699,90" data-name="Produto 13">
+            <img src="90_bola_de_basquete_wilson_nba_drv_7_1503_1_8a454356dc9bcf48cf55ab8bd23ea161.webp" alt="Produto 13">
+            <h2>Bola de Basquete Wilson NBA DRV #7</h2>
+            <p>R$ 135,15</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2014&price=R$%20749,90" data-name="Produto 14">
+            <img src="nike_cu3504011_cinza_1.png" alt="Produto 14">
+            <h2>TÊNIS NIKE WEARALLDAY</h2>
+            <p>R$ 464,90</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2015&price=R$%20799,90" data-name="Produto 15">
+            <img src="c41d2190-5eaf-4832-bd60-6e3f520d6c32-iuxjxe6sqx.webp" alt="Produto 15">
+            <h2>Camisa Vasco Kappa I 2023/24 Masc</h2>
+            <p>R$ 296,90</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2016&price=R$%20849,90" data-name="Produto 16">
+            <img src="digital--4--60ukfbap2v.webp" alt="Produto 16">
+            <h2>Teclado Mecânico Gamer Redragon Dark Avenger RGB Switch Preto K568RGB-2, Preto - Redragon</h2>
+            <p>R$ 849,90</p>
+        </a>
+        
+        
+        <a class="product" href="produto.html?name=Produto%2019&price=R$%20999,90" data-name="Produto 19">
+            <img src="sem-t-tulo-b9uiomltuy.webp" alt="Produto 19">
+            <h2>Camisa Barcelona Home 2023/2024 - Masculina</h2>
+            <p>R$ 167,00</p>
+        </a>
+        <a class="product" href="produto.html?name=Produto%2020&price=R$%201049,90" data-name="Produto 20">
+            <img src="tenis-gazelle.avif" alt="Produto 20">
+            <h2>Tênis Gazelle</h2>
+            <p>R$ 599,99</p>
+        </a>
+    </div>
+
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <div class="footer">
+        <p>Nossos produtos são os melhores do mercado. Qualidade e inovação para você!</p>
+    </div>
+
+    <script>
+        function searchProducts() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var products = document.querySelectorAll('.product');
+            
+            products.forEach(function(product) {
+                var name = product.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function openChat() {
+            alert('Aqui seria o chat com a atendente virtual.');
+        }
+    </script>
+</body>
+</html>
+
